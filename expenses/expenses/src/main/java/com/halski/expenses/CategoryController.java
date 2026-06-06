@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.halski.expenses.dto.CreateCategory;
+import com.halski.expenses.dto.UpdateCategory;
 import java.util.List;
 
 @RestController
@@ -37,14 +38,4 @@ public class CategoryController {
     public List<Category> getAll() {
         return categoryService.getAll();
     }
-
-    public static record UpdateCategory(
-        @JsonProperty String name,
-        @JsonProperty String description
-    ) {}
-
-    public static record CreateCategory(
-        @JsonProperty String name,
-        @JsonProperty String description
-    ) {}
 }
