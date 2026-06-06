@@ -9,5 +9,5 @@ public record UpdateExpense(
     @JsonProperty String description,
     @JsonProperty Double amount,
     @JsonProperty LocalDate date,
-    @JsonProperty Long categoryId
+    @JsonProperty String categoryName
 ) {}

@@ -3,8 +3,6 @@ package com.halski.expenses;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
 import java.time.LocalDate;
 
 @Entity
@@ -18,10 +16,7 @@ public class Expense {
     private String description;
     private Double amount;
     private LocalDate date;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    private String categoryName;
 
     public Long getId() {
         return id;
@@ -63,11 +58,11 @@ public class Expense {
         this.date = date;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

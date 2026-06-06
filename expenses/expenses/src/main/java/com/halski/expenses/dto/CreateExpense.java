@@ -8,7 +8,7 @@ public record CreateExpense(
     @JsonProperty String description,
     @JsonProperty Double amount,
     @JsonProperty LocalDate date,
-    @JsonProperty Long categoryId
+    @JsonProperty String categoryName
 ) {}
 
 

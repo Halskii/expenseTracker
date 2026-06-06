@@ -24,7 +24,7 @@ public class ExpenseController {
 
     @PostMapping
     public Expense create(@RequestBody CreateExpense request) {
-        return expenseService.create(request.name(), request.description(), request.amount(), request.date(), request.categoryId());
+        return expenseService.create(request.name(), request.description(), request.amount(), request.date(), request.categoryName());
     }
 
     @GetMapping({"", "/"})
@@ -32,20 +32,20 @@ public class ExpenseController {
         return expenseService.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Expense getById(@PathVariable Long id) {
-        return expenseService.getById(id);
+    @GetMapping("/{name}")
+    public Expense getById(@PathVariable String name) {
+        return expenseService.getById(name);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{name}")
     public Expense update(
-        @PathVariable Long id,
+        @PathVariable String name,
         @RequestBody UpdateExpense request) {
-        return expenseService.update(id, request.name(), request.description(), request.amount(), request.date(), request.categoryId());
+        return expenseService.update(name, request.name(), request.description(), request.amount(), request.date(), request.categoryName());
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        expenseService.delete(id);
+    @DeleteMapping("/{name}")
+    public void delete(@PathVariable String name) {
+        expenseService.delete(name);
     }
 }

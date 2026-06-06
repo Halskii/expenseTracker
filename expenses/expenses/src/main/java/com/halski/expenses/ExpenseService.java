@@ -14,16 +14,13 @@ public class ExpenseService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Expense create(String name, String description, Double amount, LocalDate date, Long categoryId) {
+    public Expense create(String name, String description, Double amount, LocalDate date, String categoryName) {
         Expense expense = new Expense();
         expense.setName(name);
         expense.setDescription(description);
         expense.setAmount(amount);
         expense.setDate(date);
-        
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new RuntimeException("Category Not Found"));
-        expense.setCategory(category);
+        expense.setCategoryName(categoryName);
 
         return expenseRepository.save(expense);
     }
@@ -32,28 +29,27 @@ public class ExpenseService {
         return expenseRepository.findAll();
     }
 
-    public Expense getById(Long id) {
-        return expenseRepository.findById(id)
+    public Expense getById(String name) {
+        return expenseRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Expense Not Found"));
     }
 
-    public Expense update(Long id, String name, String description, Double amount, LocalDate date, Long categoryId) {
-        Expense expense = expenseRepository.findById(id)
+    public Expense update(String name, String newName, String description, Double amount, LocalDate date, String categoryName) {
+        Expense expense = expenseRepository.findByName(name)
                 .orElseThrow(() -> new RuntimeException("Expense Not Found"));
 
-        expense.setName(name);
+        expense.setName(newName);
         expense.setDescription(description);
         expense.setAmount(amount);
         expense.setDate(date);
-
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new RuntimeException("Category Not Found"));
-        expense.setCategory(category);
+        expense.setCategoryName(categoryName);
 
         return expenseRepository.save(expense);
     }
 
-    public void delete(Long id) {
-        expenseRepository.deleteById(id);
+    public void delete(String name) {
+        Expense expense = expenseRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Expense Not Found"));
+        expenseRepository.delete(expense);
     }
 }
