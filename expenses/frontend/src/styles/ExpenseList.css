@@ -1,0 +1,91 @@
+/* Expense List Container */
+.expense-list-container h2 {
+  color: #333;
+  margin-top: 0;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.expenses-list h3 {
+  margin-top: 30px;
+  color: #555;
+}
+
+/* Expenses Table */
+.expenses-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.expenses-table thead {
+  background: #f9f9f9;
+  border-bottom: 2px solid #ddd;
+}
+
+.expenses-table th {
+  padding: 12px;
+  text-align: left;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.expenses-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.expense-row:hover {
+  background: #f9f9f9;
+}
+
+.expense-amount {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.expense-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.expense-category {
+  color: #667eea;
+}
+
+.expense-date {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.expense-description {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.expense-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Expense Summary */
+.expense-summary {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0f8ff;
+  border-radius: 4px;
+  text-align: right;
+  color: #333;
+}
+
+@media (max-width: 1024px) {
+  .expenses-table {
+    font-size: 0.9em;
+  }
+
+  .expenses-table th,
+  .expenses-table td {
+    padding: 8px;
+  }
+}

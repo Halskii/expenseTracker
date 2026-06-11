@@ -21,7 +21,7 @@ public class CategoryService {
 
     public Category update(Long id, String name, String description) {
         Category category = categoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Category Not Found"));
+                .orElseThrow(() -> new IllegalArgumentException("Category with id '" + id + "' not found"));
 
         category.setName(name);
         category.setDescription(description);

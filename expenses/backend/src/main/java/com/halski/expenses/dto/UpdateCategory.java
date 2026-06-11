@@ -1,8 +1,10 @@
 package com.halski.expenses.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 
-public record CreateCategory(
+public record UpdateCategory(
+    @NotBlank(message = "Category name is required")
     @JsonProperty String name,
     @JsonProperty String description
 ) {}

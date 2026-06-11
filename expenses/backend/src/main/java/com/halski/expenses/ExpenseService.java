@@ -31,12 +31,12 @@ public class ExpenseService {
 
     public Expense getById(String name) {
         return expenseRepository.findByName(name)
-                .orElseThrow(() -> new RuntimeException("Expense Not Found"));
+                .orElseThrow(() -> new IllegalArgumentException("Expense with name '" + name + "' not found"));
     }
 
     public Expense update(String name, String newName, String description, Double amount, LocalDate date, String categoryName) {
         Expense expense = expenseRepository.findByName(name)
-                .orElseThrow(() -> new RuntimeException("Expense Not Found"));
+                .orElseThrow(() -> new IllegalArgumentException("Expense with name '" + name + "' not found"));
 
         expense.setName(newName);
         expense.setDescription(description);
@@ -49,7 +49,7 @@ public class ExpenseService {
 
     public void delete(String name) {
         Expense expense = expenseRepository.findByName(name)
-                .orElseThrow(() -> new RuntimeException("Expense Not Found"));
+                .orElseThrow(() -> new IllegalArgumentException("Expense with name '" + name + "' not found"));
         expenseRepository.delete(expense);
     }
 }

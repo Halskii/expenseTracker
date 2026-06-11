@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import jakarta.validation.Valid;
 import com.halski.expenses.dto.CreateExpense;
 import com.halski.expenses.dto.UpdateExpense;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/expenses")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
@@ -23,7 +26,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public Expense create(@RequestBody CreateExpense request) {
+    public Expense create(@Valid @RequestBody CreateExpense request) {
         return expenseService.create(request.name(), request.description(), request.amount(), request.date(), request.categoryName());
     }
 
@@ -40,7 +43,7 @@ public class ExpenseController {
     @PutMapping("/{name}")
     public Expense update(
         @PathVariable String name,
-        @RequestBody UpdateExpense request) {
+        @Valid @RequestBody UpdateExpense request) {
         return expenseService.update(name, request.name(), request.description(), request.amount(), request.date(), request.categoryName());
     }
 
